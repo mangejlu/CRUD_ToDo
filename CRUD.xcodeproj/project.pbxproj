@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		FBBD690A2EABF95B006CF6F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBBD68902EA98472006CF6F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBBD68972EA98472006CF6F5;
+			remoteInfo = CRUD;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		FBBD68982EA98472006CF6F5 /* CRUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBBD69062EABF95B006CF6F5 /* SwiftDataBucketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDataBucketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = CRUD;
 			sourceTree = "<group>";
 		};
+		FBBD69072EABF95B006CF6F5 /* SwiftDataBucketTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SwiftDataBucketTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FBBD68952EA98472006CF6F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBBD69032EABF95B006CF6F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				FBBD689A2EA98472006CF6F5 /* CRUD */,
+				FBBD69072EABF95B006CF6F5 /* SwiftDataBucketTests */,
 				FBBD68992EA98472006CF6F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				FBBD68982EA98472006CF6F5 /* CRUD.app */,
+				FBBD69062EABF95B006CF6F5 /* SwiftDataBucketTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = FBBD68982EA98472006CF6F5 /* CRUD.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FBBD69052EABF95B006CF6F5 /* SwiftDataBucketTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBBD690E2EABF95B006CF6F5 /* Build configuration list for PBXNativeTarget "SwiftDataBucketTests" */;
+			buildPhases = (
+				FBBD69022EABF95B006CF6F5 /* Sources */,
+				FBBD69032EABF95B006CF6F5 /* Frameworks */,
+				FBBD69042EABF95B006CF6F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBBD690B2EABF95B006CF6F5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FBBD69072EABF95B006CF6F5 /* SwiftDataBucketTests */,
+			);
+			name = SwiftDataBucketTests;
+			packageProductDependencies = (
+			);
+			productName = SwiftDataBucketTests;
+			productReference = FBBD69062EABF95B006CF6F5 /* SwiftDataBucketTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					FBBD68972EA98472006CF6F5 = {
 						CreatedOnToolsVersion = 26.0.1;
+					};
+					FBBD69052EABF95B006CF6F5 = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = FBBD68972EA98472006CF6F5;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				FBBD68972EA98472006CF6F5 /* CRUD */,
+				FBBD69052EABF95B006CF6F5 /* SwiftDataBucketTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FBBD68962EA98472006CF6F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBBD69042EABF95B006CF6F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FBBD69022EABF95B006CF6F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBBD690B2EABF95B006CF6F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBBD68972EA98472006CF6F5 /* CRUD */;
+			targetProxy = FBBD690A2EABF95B006CF6F5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FBBD68A12EA98474006CF6F5 /* Debug */ = {
@@ -310,6 +385,48 @@
 			};
 			name = Release;
 		};
+		FBBD690C2EABF95B006CF6F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NA92SQBVBR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = A00838582.om.itesm.SwiftDataBucketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRUD.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CRUD";
+			};
+			name = Debug;
+		};
+		FBBD690D2EABF95B006CF6F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NA92SQBVBR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = A00838582.om.itesm.SwiftDataBucketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRUD.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CRUD";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -327,6 +444,15 @@
 			buildConfigurations = (
 				FBBD68A42EA98474006CF6F5 /* Debug */,
 				FBBD68A52EA98474006CF6F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBBD690E2EABF95B006CF6F5 /* Build configuration list for PBXNativeTarget "SwiftDataBucketTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBBD690C2EABF95B006CF6F5 /* Debug */,
+				FBBD690D2EABF95B006CF6F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

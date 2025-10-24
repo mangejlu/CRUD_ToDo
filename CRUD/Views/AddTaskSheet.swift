@@ -22,7 +22,6 @@ struct AddTaskSheet: View {
             Form {
                 TextField("Task Name", text: $name)
                 DatePicker("Date", selection: $dateAdded, displayedComponents: .date)
-                Toggle("Completed", isOn: $completed)
                 Picker("Category", selection: $selectedCategory) {
                     ForEach(TaskCategory.allCases, id: \.self) { category in
                         Label(category.displayName, systemImage: category.iconName)

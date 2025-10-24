@@ -22,6 +22,9 @@ enum TaskCategory: String, Codable, CaseIterable {
     var displayName: String {
         rawValue.capitalized
     }
+    static func icon(for category: TaskCategory) -> String {
+            category.iconName
+    }
 }
 
 @Model
@@ -37,4 +40,10 @@ class Task {
         self.completed = completed
         self.category = category
     }
+    static func isValidName(_ name: String)->Bool{
+        !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+
 }
+
