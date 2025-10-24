@@ -9,51 +9,59 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    
     @State private var isShowingItemSheet: Bool = false
     @Query(sort: \Task.dateAdded) var tasks: [Task]
     @Environment(\.modelContext) private var context
-    @State private var pendingDeletion: Set<Task> = []
-
+    @State private var pendingDeletion: Set<PersistentIdentifier> = []
+    
     var body: some View {
         NavigationStack {
             List {
                 ForEach(tasks) { task in
-                    HStack {
-                        Button {
-                            task.completed.toggle()
-                            try? context.save()
-
-                            if task.completed {
-                                pendingDeletion.insert(task)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                                    if pendingDeletion.contains(task) {
-                                        context.delete(task)
-                                        try? context.save()
-                                        pendingDeletion.remove(task)
-                                    }
+                    NavigationLink {
+                        TaskDetailsView(task: task)
+                    } label: {
+                        HStack {
+                            Button {
+                                task.completed.toggle()
+                                try? context.save()
+                                
+                                if task.completed {
+                                    scheduleDeletion(for: task)
                                 }
+                            } label: {
+                                Image(systemName: task.completed ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(task.completed ? .green : .gray)
                             }
-                        } label: {
-                            Image(systemName: task.completed ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(task.completed ? .green : .gray)
-                        }
+                            .buttonStyle(PlainButtonStyle())
 
-                        Image(systemName: task.category.iconName)
-                            .foregroundColor(.accentColor)
+                            Image(systemName: task.category.iconName)
+                                .font(.system(size: 16))
+                                .foregroundColor(categoryColor(for: task.category))
+                                .frame(width: 24)
 
-                        VStack(alignment: .leading) {
-                            Text(task.name)
-                                .font(.headline)
-                                .strikethrough(task.completed)
-                                .foregroundColor(task.completed ? .gray : .primary)
-                            Text(task.category.displayName)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                            VStack(alignment: .leading) {
+                                Text(task.name)
+                                    .font(.headline)
+                                    .strikethrough(task.completed)
+                                    .foregroundColor(task.completed ? .gray : .primary)
+                                Text(task.category.displayName)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+
+                            Spacer()
                         }
-                        Spacer()
+                        .padding(.vertical, 4)
                     }
-                    .padding(.vertical, 4)
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            context.delete(task)
+                            try? context.save()
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
                 }
             }
             .navigationTitle("To-Do List")
@@ -62,16 +70,39 @@ struct ContentView: View {
                 AddTaskSheet()
             }
             .toolbar {
-                Button("Add", systemImage: "plus") {
-                    isShowingItemSheet = true
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Add", systemImage: "plus") {
+                        isShowingItemSheet = true
+                    }
                 }
             }
         }
-        .padding()
+    }
+
+    private func scheduleDeletion(for task: Task) {
+        pendingDeletion.insert(task.id)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            if pendingDeletion.contains(task.id) {
+                context.delete(task)
+                try? context.save()
+                pendingDeletion.remove(task.id)
+            }
+        }
+    }
+    
+    private func categoryColor(for category: TaskCategory) -> Color {
+        switch category {
+        case .work:
+            return .blue
+        case .personal:
+            return .purple
+        case .shopping:
+            return .orange
+        case .health:
+            return .red
+        }
     }
 }
-
-
 
 #Preview {
     ContentView()

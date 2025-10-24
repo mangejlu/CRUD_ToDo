@@ -1,9 +1,3 @@
-//
-//  ToDoModel.swift
-//  CRUD
-//
-//  Created by Alumno on 22/10/25.
-//
 import Foundation
 import SwiftData
 
@@ -22,8 +16,9 @@ enum TaskCategory: String, Codable, CaseIterable {
     var displayName: String {
         rawValue.capitalized
     }
+    
     static func icon(for category: TaskCategory) -> String {
-            category.iconName
+        category.iconName
     }
 }
 
@@ -33,17 +28,17 @@ class Task {
     var dateAdded: Date
     var completed: Bool
     var category: TaskCategory
+    var notes: String
 
-    init(name: String, dateAdded: Date, completed: Bool, category: TaskCategory) {
+    init(name: String, dateAdded: Date = .now, completed: Bool = false, category: TaskCategory, description: String = "") {
         self.name = name
         self.dateAdded = dateAdded
         self.completed = completed
         self.category = category
+        self.notes = description
     }
-    static func isValidName(_ name: String)->Bool{
+    
+    static func isValidName(_ name: String) -> Bool {
         !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
-
-
 }
-

@@ -1,22 +1,16 @@
-//
-//  AddTaskSheet.swift
-//  CRUD
-//
-//  Created by Alumno on 22/10/25.
-//
 import SwiftUI
 import SwiftData
 
 struct AddTaskSheet: View {
-    
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
-    
+
     @State private var name: String = ""
     @State private var dateAdded: Date = .now
     @State private var completed: Bool = false
     @State private var selectedCategory: TaskCategory = .personal
-    
+    @State private var description: String = ""
+
     var body: some View {
         NavigationStack {
             Form {
@@ -28,22 +22,32 @@ struct AddTaskSheet: View {
                             .tag(category)
                     }
                 }
+                TextField("Description", text: $description, axis: .vertical)
+                    .lineLimit(3...6)
             }
             .navigationTitle("New Task")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                ToolbarItemGroup(placement: .topBarLeading) {
+                ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
                         dismiss()
                     }
                 }
-                ToolbarItemGroup(placement: .topBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        let task = Task(name: name, dateAdded: dateAdded, completed: completed, category: selectedCategory)
+                        guard Task.isValidName(name) else { return }
+                        
+                        let task = Task(
+                            name: name,
+                            dateAdded: dateAdded,
+                            category: selectedCategory,
+                            description: description
+                        )
                         context.insert(task)
-                        try! context.save()
+                        try? context.save()
                         dismiss()
                     }
+                    .disabled(!Task.isValidName(name))
                 }
             }
         }
